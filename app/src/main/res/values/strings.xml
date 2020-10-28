@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">blood bank</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="Name">Name</string>
+    <string name="Login">login</string>
+    <string name="not_registered">Not Registered?</string>
+    <string name="register">Register Here</string>
+    <string name="City">City</string>
+    <string name="Phone_number">Phone Number</string>
+    <string name="confirm_Password">Confirm Password</string>
+    <string name="Submit">Submit</string>
+    <string name="email">Email ID</string>
+    <string name="Blood_Group">Blood Group</string>
+</resources>
