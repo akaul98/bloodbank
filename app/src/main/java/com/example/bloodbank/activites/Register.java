@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.android.volley.Response.ErrorListener;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -28,8 +28,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.transform.ErrorListener;
-import javax.xml.transform.TransformerException;
 
 import static com.example.bloodbank.R.layout.activity_register2;
 
@@ -58,39 +56,36 @@ public class Register extends AppCompatActivity {
                 name= nameEt.getText().toString();
                 city= cityEt.getText().toString();
                 email= emailEt.getText().toString();
-                bloodgroup=bloodgroupEt.getText().toString();
+                bloodgroup=bloodgroupEt.getText ().toString();
                 phone= phoneEt.getText().toString();
                 password= passwordEt.getText().toString();
                 confirmpassword= confirmpasswordEt.getText().toString();
                    if (isvalid(name,city,email,bloodgroup,phone,password,confirmpassword)){
-                       Register(name,city,email,bloodgroup,phone,password);
+                       register(name,city,email,bloodgroup,phone,password);
                 }
-                    //showmessage(name + "\n" + city + "\n" + email + "\n" +bloodgroup+ "\n" + phone + "\n" + password + "\n" + confirmpassword);
-
-                Intent registerintent= new Intent(Register.this,activity_login.class);
-                startActivity(registerintent);
 
             }
         });
 
     }
-    private void Register(final String name,final String city, final String email,final String bloodgroup,final String phone,final String password){
+    private void register(final String name,final String city, final String email,final String bloodgroup,final String phone,final String password){
 
             StringRequest stringRequest = new StringRequest(Request.Method.POST, endpoint.register_url,
                     new Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                            if(response.equals("Success")){
-                                PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit()
-                                        .putString("city", city).apply();
-                                Toast.makeText(Register.this, response, Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Register.this, MainActivity.class));
+                                Toast.makeText(Register.this,response,Toast.LENGTH_SHORT).show();
+                               Intent reg= new Intent(Register.this,activity_login.class);
+                               startActivity(reg);
+                                //startActivity(new Intent(Register.this, activity_login.class));
+                                //startActivity(new Intent(Register.this,MainActivity.class));
                                 Register.this.finish();
                             }else{
                                 Toast.makeText(Register.this, response, Toast.LENGTH_SHORT).show();
                             }
                         }
-                    },new Response.ErrorListener() {
+                    },new Response.ErrorListener(){
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     Toast.makeText(Register.this, "Something went wrong:(", Toast.LENGTH_SHORT).show();
