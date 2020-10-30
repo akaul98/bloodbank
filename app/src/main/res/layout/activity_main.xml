@@ -1,18 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activites.MainActivity">
-
+    android:background="@android:color/white"
+    tools:context=".activites.MainActivity"
+    tools:ignore="MissingClass">
+<androidx.appcompat.widget.Toolbar
+   android:id="@+id/toolbar"
+    app:title="@string/app_name"
+    android:background="@color/colorPrimary"
+    android:layout_width="match_parent"
+    app:menu="@menu/search_menu"
+    android:layout_height="?attr/actionBarSize">
+</androidx.appcompat.widget.Toolbar>
+<LinearLayout
+    android:id="@+id/LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:background="#FAFAFA"
+    android:gravity="center"
+    android:layout_below="@id/toolbar">
     <TextView
+        android:id="@+id/picklocation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textAlignment="gravity"
+        android:gravity="center"
+        android:textStyle="italic"
+        android:drawableTint="@android:color/black"
+        android:layout_margin="6dp"
+        android:padding="5dp"
+        android:textColor="@android:color/darker_gray"
+        android:TextSize="16sp"
+        android:drawableEnd="@drawable/ic_baseline_location_on_24"
+        android:text="Choose the Location"
+        android:drawableRight="@drawable/ic_baseline_location_on_24" />
+</LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+ <androidx.recyclerview.widget.RecyclerView
+     android:id="@+id/recycleview"
+     android:layout_height="wrap_content"
+     android:layout_width="match_parent"
+     android:layout_above="@id/makerequest"
+     android:layout_below="@id/LinearLayout"/>
+
+
+   <TextView
+       android:id="@+id/makerequest"
+       android:background="@color/colorPrimaryDark"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="Make Request"
+       android:TextSize="16sp"
+       android:textStyle="bold"
+       android:textAlignment="center"
+       android:padding="16dp"
+       android:textColor="@android:color/black"
+       android:gravity="center_horizontal"
+       android:layout_alignParentBottom="true"/>
+
+
+
+</RelativeLayout>

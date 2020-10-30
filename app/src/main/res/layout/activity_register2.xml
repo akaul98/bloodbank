@@ -13,7 +13,7 @@
     android:orientation="vertical"
     android:layout_marginTop="25dp">
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
@@ -26,9 +26,9 @@
             android:gravity="center_horizontal"
             android:hint="@string/Name"
             android:textAlignment="center" />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -40,9 +40,9 @@
         android:gravity="center_horizontal"
         android:hint="@string/City"
         android:textAlignment="center"/>
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
@@ -55,8 +55,8 @@
         android:hint="email(optional)"
         android:textAlignment="center"
         />
-</android.support.design.widget.TextInputLayout>
-    <android.support.design.widget.TextInputLayout
+</com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:passwordToggleEnabled="true"
@@ -70,9 +70,9 @@
             android:hint="@string/Blood_Group"
             android:textAlignment="center"></EditText>
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -86,10 +86,10 @@
         android:hint="@string/Phone_number"
         android:textAlignment="center"
         android:inputType="number"/>
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -103,9 +103,9 @@
             android:hint="@string/Password"
             android:inputType="textPassword"
             android:gravity="center_horizontal" />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <android.support.design.widget.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -119,28 +119,29 @@
             android:hint="@string/confirm_Password"
             android:inputType="textPassword"
             android:gravity="center_horizontal" />
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-    <android.support.design.widget.TextInputLayout
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@android:color/holo_red_light"
+        android:gravity="center"
+        android:text="@string/Submit"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="24dp" />
+
+    <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="85dp"
-        app:passwordToggleEnabled="true"
-        android:layout_marginTop="25dp">
-        <Button
-            android:id="@+id/submit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"
-            android:background="@android:color/holo_red_light"
-            android:gravity="center"
-            android:text="@string/Submit"
-            android:textAlignment="center"
-            android:textSize="24dp" />
+        android:layout_marginTop="25dp"
+        app:passwordToggleEnabled="true">
 
-    </android.support.design.widget.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </LinearLayout>
 
