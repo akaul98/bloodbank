@@ -9,4 +9,5 @@
     <string name="confirm_Password">Confirm Password</string>
     <string name="Submit">Submit</string>
     <string name="Blood_Group">Blood Group</string>
+    <string name="choose_image"><u>Choose Image</u></string>
 </resources>
