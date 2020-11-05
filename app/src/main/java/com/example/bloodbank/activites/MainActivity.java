@@ -1,23 +1,40 @@
 package com.example.bloodbank.activites;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.LayoutManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.ToolbarWidgetWrapper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.example.bloodbank.Adapters.RequestAdapter;
 import com.example.bloodbank.R;
 import com.example.bloodbank.datamodeling.RequestDataModel;
+import com.example.bloodbank.utils.VolleySingleton;
+import com.example.bloodbank.utils.endpoint;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -57,15 +74,34 @@ public class MainActivity extends AppCompatActivity {
         popluateHomepage();
     }
 
-    private void popluateHomepage(){
-        RequestDataModel requestDataModel =new RequestDataModel("Hi need O+ for my son","https://media-exp1.licdn.com/dms/image/C4D03AQH9xZ6wHxQLsg/profile-displayphoto-shrink_400_400/0?e=1609977600&v=beta&t=Twv4mtsFowefvnNEk-L2-nkpW2jr9f9aKZFTxsheXHE");
-        requestDataModels.add(requestDataModel);
-        requestDataModels.add(requestDataModel);
-        requestDataModels.add(requestDataModel);
-        requestDataModels.add(requestDataModel);
-        requestDataModels.add(requestDataModel);
-        requestAdapter.notifyDataSetChanged();
-    }
-
+    private void popluateHomepage() {
+        final String city= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("city","no city");
+          StringRequest stringRequest = new StringRequest(Request.Method.POST, endpoint.get_requests,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Gson gson =new Gson();
+                        Type type= new TypeToken<List<RequestDataModel>>(){}.getType();
+                        List<RequestDataModel> dataModels = gson.fromJson(response,type);
+                        requestDataModels.addAll(dataModels);
+                        requestAdapter.notifyDataSetChanged();
+                    }
+                },new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(MainActivity.this, "Something went wrong:(", Toast.LENGTH_SHORT).show();
+                Log.d("VOLLEY", error.getMessage());
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("city",city);
+                return params;
+            }
+        };
+            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
+        }
 
     }

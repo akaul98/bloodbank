@@ -3,6 +3,8 @@ package com.example.bloodbank.activites;
 import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -80,9 +82,11 @@ public class activity_login extends AppCompatActivity {
             new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
-                    if(response.equals("Success")){
+                    if(!response.equals("Invalid Credentials")){
                         Toast.makeText(activity_login.this, response, Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(activity_login.this,MainActivity.class));
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("phone",phone).apply();
+                        PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("city",response).apply();
                         activity_login.this.finish();
                     }else{
                         Toast.makeText(activity_login.this, response, Toast.LENGTH_SHORT).show();

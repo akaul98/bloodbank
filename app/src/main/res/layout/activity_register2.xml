@@ -16,7 +16,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
         android:layout_marginTop="25dp">
 
         <EditText
@@ -31,22 +30,19 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        app:passwordToggleEnabled="true">
+        android:layout_marginTop="25dp">
     <EditText
         android:id="@+id/City"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:hint="@string/City"
-        android:textAllCaps="true"
         android:textAlignment="center"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
         android:layout_marginTop="25dp">
     <EditText
         android:id="@+id/email"
@@ -60,7 +56,6 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:passwordToggleEnabled="true"
         android:layout_marginTop="25dp">
 
         <EditText
@@ -76,8 +71,7 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        app:passwordToggleEnabled="true">
+        android:layout_marginTop="25dp">
 
     <EditText
         android:id="@+id/Phone"

@@ -1,8 +1,9 @@
-package com.example.bloodbank.activites;
+  package com.example.bloodbank.activites;
 import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.util.Log;
 import android.view.View;
@@ -74,6 +75,7 @@ public class Register extends AppCompatActivity {
                         @Override
                         public void onResponse(String response) {
                            if(response.equals("Success")){
+                               PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).edit().putString("city",city ).apply();
                                 Toast.makeText(Register.this,response,Toast.LENGTH_SHORT).show();
                                Intent reg= new Intent(Register.this,activity_login.class);
                                startActivity(reg);
