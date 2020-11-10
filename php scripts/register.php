@@ -1,15 +1,23 @@
 <?php
+
+
     $host = "localhost";
     $user = "id15068832_register_data";
     $pass = "|&<6-_ePuM*UN@2q";
     $db = "id15068832_bloodbank";
     $con = mysqli_connect($host,$user,$pass,$db);
+
+
 $name = $_POST["name"];
 $city = $_POST["city"];
 $email = $_POST["email"];
 $bloodgroup = $_POST["bloodgroup"];
 $phone = $_POST["phone"];
 $password = $_POST["password"];
+
+
+
+
 $sql= "INSERT INTO register_user(name,city,email,bloodgroup,phone,password) VALUES('$name','$city','$email','$bloodgroup','$phone','$password')";
 
   $result = mysqli_query($con, $sql);
@@ -18,3 +26,4 @@ $sql= "INSERT INTO register_user(name,city,email,bloodgroup,phone,password) VALU
     }
     mysqli_close($con);
 ?>
+

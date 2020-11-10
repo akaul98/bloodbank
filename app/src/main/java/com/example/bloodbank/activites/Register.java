@@ -45,7 +45,7 @@ public class Register extends AppCompatActivity {
         cityEt= findViewById(R.id.City);
         emailEt= findViewById(R.id.email);
         bloodgroupEt= findViewById(R.id.bloodgroup);
-        phoneEt= findViewById(R.id.Phone);
+        phoneEt= findViewById(R.id.phone);
         passwordEt= findViewById(R.id.password);
         confirmpasswordEt=findViewById(R.id.confirm_password);
         submitEt=findViewById(R.id.submit);
@@ -79,8 +79,6 @@ public class Register extends AppCompatActivity {
                                 Toast.makeText(Register.this,response,Toast.LENGTH_SHORT).show();
                                Intent reg= new Intent(Register.this,activity_login.class);
                                startActivity(reg);
-                                //startActivity(new Intent(Register.this, activity_login.class));
-                                //startActivity(new Intent(Register.this,MainActivity.class));
                                 Register.this.finish();
                             }else{
                                 Toast.makeText(Register.this, response, Toast.LENGTH_SHORT).show();

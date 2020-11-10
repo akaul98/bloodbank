@@ -42,6 +42,7 @@ public class Search extends AppCompatActivity {
         submit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String blood_group = et_blood_group.getText().toString();
                 String city = et_city.getText().toString();
                 if(isValid(blood_group, city)){
@@ -58,7 +59,11 @@ public class Search extends AppCompatActivity {
                 @Override
                 public void onResponse(String response) {
                     //json response
-
+                    Intent intent =new Intent(Search.this,SearchResults.class);
+                    intent.putExtra("city",city);
+                    intent.putExtra("blooddroup",bloodgroup);
+                    intent.putExtra("json",response);
+                    startActivity(intent);
                 }
             }, new Response.ErrorListener() {
                 @RequiresApi(api = Build.VERSION_CODES.KITKAT)

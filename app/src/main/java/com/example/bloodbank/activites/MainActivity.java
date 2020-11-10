@@ -1,10 +1,13 @@
+
 package com.example.bloodbank.activites;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.LayoutManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -22,6 +25,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.androidnetworking.common.Method;
 import com.example.bloodbank.Adapters.RequestAdapter;
 import com.example.bloodbank.R;
 import com.example.bloodbank.datamodeling.RequestDataModel;
@@ -35,6 +39,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -52,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent registerintent = new Intent(MainActivity.this, MakeRequestActivity.class);
                 startActivity(registerintent);
-                                           }
-                                       });
+            }
+        });
         requestDataModels = new ArrayList<>()   ;
         Toolbar toolbar = findViewById(R.id.toolbar);
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -72,11 +77,17 @@ public class MainActivity extends AppCompatActivity {
         requestAdapter=new RequestAdapter(requestDataModels,this);
         recyclerView.setAdapter(requestAdapter);
         popluateHomepage();
+        TextView picklocation=findViewById(R.id.picklocation);
+        String location= PreferenceManager.getDefaultSharedPreferences(this).getString("city","No city Found");
+        if (!location.equals("No city Found ")){
+            picklocation.setText(location);
+
+        }
     }
 
     private void popluateHomepage() {
-        final String city= PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("city","no city");
-          StringRequest stringRequest = new StringRequest(Request.Method.POST, endpoint.get_requests,
+       final String city = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getString("city","no_city") ;
+        StringRequest stringRequest = new StringRequest(Method.POST, endpoint.get_requests,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -87,10 +98,11 @@ public class MainActivity extends AppCompatActivity {
                         requestAdapter.notifyDataSetChanged();
                     }
                 },new Response.ErrorListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void onErrorResponse(VolleyError error) {
                 Toast.makeText(MainActivity.this, "Something went wrong:(", Toast.LENGTH_SHORT).show();
-                Log.d("VOLLEY", error.getMessage());
+                Log.d("VOLLEY", Objects.requireNonNull(error.getMessage()));
             }
         })
         {
@@ -101,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 return params;
             }
         };
-            VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-        }
-
+        VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
     }
+
+}

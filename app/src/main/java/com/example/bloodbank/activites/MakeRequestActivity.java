@@ -86,7 +86,7 @@ public class MakeRequestActivity extends AppCompatActivity {
         if (PermissionChecker.checkSelfPermission(getApplicationContext(), READ_EXTERNAL_STORAGE)
                 != PermissionChecker.PERMISSION_GRANTED) {
             //asking for permission
-            requestPermissions(new String[]{READ_EXTERNAL_STORAGE}, 401);
+
         } else {
             //permission is already there
             pickImage();
@@ -144,7 +144,7 @@ public class MakeRequestActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     if(response.getBoolean("success")){
-                        showMessage("Successfull");
+                        showMessage("Successful");
                         MakeRequestActivity.this.finish();
                     }else{
                         showMessage(response.getString("message"));
