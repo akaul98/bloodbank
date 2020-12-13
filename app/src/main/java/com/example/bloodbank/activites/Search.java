@@ -61,7 +61,7 @@ public class Search extends AppCompatActivity {
                     //json response
                     Intent intent =new Intent(Search.this,SearchResults.class);
                     intent.putExtra("city",city);
-                    intent.putExtra("blooddroup",bloodgroup);
+                    intent.putExtra("bloodgroup",bloodgroup);
                     intent.putExtra("json",response);
                     startActivity(intent);
                 }
